@@ -464,7 +464,7 @@ function renderScores(bump){
 function renderBoard(r){
   const groups=[1,2,3].map(k=>r.filter(t=>t.score>0&&t.rank===k)).filter(g=>g.length);
   $('bd-rows').innerHTML=groups.length?groups.map(g=>{const k=g[0].rank;return `<div class="bd-row"><span class="bd-rk ${k===1?'r1':''}">${g.length>1?'공동 ':''}${k}위</span><span class="bd-tm">${g.map(t=>`<i style="--c:${t.color}">●</i> ${esc(t.name)}`).join('  ')}</span><span class="bd-pt">${g[0].score}점</span></div>`}).join('')
-    :'<div class="bd-empty">▶ 경기 시작 전 · PLAY BALL!</div>';
+    :'<div class="bd-empty">▶ 경기 시작 전 · PLAY GAME!</div>';
   $('bd-line').innerHTML=WS.teams.map(t=>`<div><span>${esc(t.name)}</span><b>${scoreOf(t.name)}</b></div>`).join('');
 }
 function boardClock(){const d=new Date();$('bd-clock').textContent=[d.getHours(),d.getMinutes(),d.getSeconds()].map(pad).join(':')}
