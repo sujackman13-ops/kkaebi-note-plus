@@ -87,6 +87,16 @@ section[hidden]{display:none}
 .game p{margin:0;font-size:14px;color:var(--ink2)}
 .more{display:inline-block;align-self:flex-start;background:#173a31;color:#3fbf9c;text-decoration:none;font-weight:700;font-size:14px;border-radius:8px;padding:7px 12px}
 .more:hover{background:#0f7a63;color:#fff}
+.prize{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.prize h2{margin-bottom:8px}
+.prize-lead{margin:0 0 10px;font-size:14.5px;font-weight:700}
+.prize-list{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0;align-items:start}
+.prize-list dt{font-weight:700;font-size:14px;color:#fff;background:var(--jade);border-radius:6px;padding:2px 10px;text-align:center}
+.prize-list dd{margin:0}
+.prize-list ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.prize-list li{font-size:14.5px;font-weight:700;word-break:keep-all}
+.prize-list li span{color:var(--ink3)}
+.prize-list li b{color:var(--gold)}
 .how{background:var(--sunk);border-radius:8px;padding:10px 12px}
 .how h4{margin:0 0 4px;font-size:13px;color:var(--title)}
 .how ul{margin:0;padding-left:18px}
@@ -231,6 +241,20 @@ linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3
     <p class="eyebrow">23일 (금) 16:00 팀 단체전 · 18:00 개인전</p>
     <h2>게임 항목</h2>
     <p class="muted" style="margin:0" id="g-sum"></p>
+    <div class="prize">
+      <h2>상품 지급</h2>
+      <p class="prize-lead"><b>상품 지급 기준</b> · 게임 진행 난이도를 고려하여 아래와 같이 지급 예정입니다.</p>
+      <dl class="prize-list">
+        <dt>단체전</dt>
+        <dd><ul>
+          <li>Kahoot 퀴즈 1등 <span>→</span> <b>3등 상품</b> 지급</li>
+          <li>랜덤 인물퀴즈 1등 <span>→</span> <b>2등 상품</b> 지급</li>
+          <li>몸으로 말해요 1등 <span>→</span> <b>1등 상품</b> 지급</li>
+        </ul></dd>
+        <dt>개인전</dt>
+        <dd><ul><li>핀볼 최종 생존자 <span>→</span> <b>개인 상품</b> 지급</li></ul></dd>
+      </dl>
+    </div>
   </div>
   <div id="parts"></div>
 </section>
