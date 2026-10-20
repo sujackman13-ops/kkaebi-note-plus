@@ -7,7 +7,7 @@
 <title>SOL기술사업부 워크샵 일정</title>
 <meta name="description" content="2026년 10월 23~24일 SOL기술 사업부 대부도 워크샵 — 일정 · 조 편성 · 게임 항목 · 실시간 점수">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:light;
 --bg:#ffffff;--surface:#ffffff;--sunk:#f1f3f2;--line:#dfe3e1;--ink:#000000;--ink2:#1f1f1f;--ink3:#4a4a4a;--title:#3fbf9c;
@@ -53,19 +53,19 @@ section[hidden]{display:none}
 .tl{list-style:none;margin:0;padding:0}
 .tl li{display:grid;grid-template-columns:118px 1fr auto;gap:12px;align-items:baseline;padding:10px 0;border-top:1px solid var(--line)}
 .tl li:first-child{border-top:0}
-.tl .t{font-family:var(--f-mono);font-size:13px;color:var(--ink2);white-space:nowrap}
+.tl .t{font-family:var(--f-mono);font-size:13.5px;font-weight:700;color:var(--ink);white-space:nowrap}
 .tl .what b{display:block}
 .tl .what span{font-size:13px;color:var(--ink3)}
 .tl li.now{background:linear-gradient(90deg,var(--jade-soft),transparent);border-radius:8px;padding-left:8px}
 .tl li.now .t{color:var(--jade)}
 .tl li.past{opacity:.45}
-.tl li.dayh{display:block;padding:14px 0 6px;border-top:0;font-family:var(--f-display);font-size:19px;font-weight:700;color:var(--title)}
+.tl li.dayh{display:block;padding:14px 0 6px;border-top:0;font-family:var(--f-body);font-size:18px;font-weight:700;color:var(--title)}
 .tl li.dayh:first-child{padding-top:0}
 .tl li.dayh+li{border-top:0}
 @media (max-width:560px){.tl li{grid-template-columns:52px 1fr}.tl .t{white-space:normal}.tl li .tag{grid-column:2;justify-self:start}}
 .info{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;font-size:14px}
 .info dt{color:var(--ink3);font-weight:700}.info dd{margin:0}
-.notes{margin:0;padding-left:18px}.notes li{margin:5px 0;font-size:14px}
+.notes{margin:0;padding-left:18px}.notes li{margin:5px 0;font-size:14px;font-weight:700}
 /* teams */
 .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 .team{border:1px solid var(--line);border-radius:var(--r);padding:16px;background:var(--surface);border-top:4px solid var(--c)}
@@ -159,10 +159,10 @@ linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3
 <section id="home">
   <div class="card hero">
     <div>
-      <p class="eyebrow" id="h-title"></p>
+      <p class="eyebrow" id="h-title" style="font-size:13px;color:var(--ink)"></p>
       <h2 id="h-label" style="margin:0">워크샵까지</h2>
       <div class="clock" id="h-count">-</div>
-      <div class="muted" id="h-when"></div>
+      <div class="muted" id="h-when" style="font-weight:700;color:var(--ink)"></div>
     </div>
     <div class="hstats">
       <div><span>참가 조</span><b id="s-teams">-</b></div>
@@ -262,7 +262,7 @@ const WS = {
   ],
   notes: [
     "1박 2일이에요. 세면도구와 갈아입을 옷을 챙겨 주세요.",
-    "16:00 팀 단체전 게임이 있으니 편한 옷과 운동화를 추천해요.",
+    "16:00 팀 단체전 게임이 있으니 조별로 모여주시기 바랍니다.",
     "Kahoot 퀴즈는 휴대폰으로 참여해요. 충전해 오세요!",
     "24일 오전 10:00까지 숙소 정리, 11:00 퇴실입니다."
   ],
@@ -297,8 +297,7 @@ const WS = {
         points:[["1등",10],["2등",7],["3등",3]] },
       { name:"랜덤 인물퀴즈", desc:"랜덤으로 나오는 인물을 맞혀요.", points:[] },
       { name:"몸으로 말해요", desc:"말 없이 몸짓만으로 제시어를 전달해요.",
-        points:[["1등",10],["2등",7],["3등",3]] },
-      { name:"인물퀴즈", desc:"인물을 보고 누구인지 맞혀요.", points:[] }
+        points:[["1등",10],["2등",7],["3등",3]] }
     ]},
     { name:"개인전", sub:"23일 18:00 · 저녁 식사와 함께", games:[
       { name:"핀볼", desc:"저녁 식사와 함께 진행하는 개인전.", points:[] }
