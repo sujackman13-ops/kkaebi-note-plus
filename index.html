@@ -78,7 +78,8 @@ section[hidden]{display:none}
 /* games */
 .part{margin-bottom:22px}
 .part-h{display:flex;align-items:baseline;gap:10px;margin:0 0 10px}
-.part-h h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:22px;color:var(--jade)}
+.part-h h3{margin:0;font-family:var(--f-display);font-weight:400;font-size:22px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.part-h .muted{color:#e0e0e0}
 .ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .game{border:1px solid var(--line);border-radius:var(--r);padding:16px;background:var(--surface);display:flex;flex-direction:column;gap:8px}
 .game .top{display:flex;align-items:center;gap:10px}
@@ -129,15 +130,16 @@ section[hidden]{display:none}
 .rbox{border:1px dashed var(--line);border-radius:10px;padding:12px 14px}
 .rbox h4{margin:0 0 6px;font-size:12px;color:var(--ink3)}
 .rbox p{margin:0 0 4px;font-size:13px;color:var(--ink2)}
-footer{max-width:1040px;margin:0 auto;padding:0 16px 40px;color:var(--ink3);font-size:12px}
+footer{max-width:1040px;margin:0 auto;padding:0 16px 40px;color:#e8e8e8;font-size:12px;text-shadow:0 1px 3px rgba(0,0,0,.6)}
 /* ===== 배경: 왼쪽 bg-left.png (사옥) / 오른쪽 bg-right.png (ETEVERS) ===== */
-.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#fff}
+.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#03070a}
 .sky i{position:absolute;display:block}
 .sky .bgl,.sky .bgr{top:0;bottom:0;width:50%;background-size:cover;background-repeat:no-repeat}
 .sky .bgl{left:0;background-image:url("bg-left.png");background-position:center 35%}
 .sky .bgr{right:0;background-image:url("bg-right.png");background-position:center center}
 .sky .shade{inset:0;background:
-linear-gradient(90deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.82) 35%,rgba(255,255,255,.92) 50%,rgba(255,255,255,.82) 65%,rgba(255,255,255,.55) 100%)}
+linear-gradient(90deg,rgba(3,7,10,.2) 0%,rgba(3,7,10,.5) 35%,rgba(3,7,10,.65) 50%,rgba(3,7,10,.5) 65%,rgba(3,7,10,.2) 100%),
+linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3,7,10,.55) 100%)}
 </style>
 </head>
 <body>
