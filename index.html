@@ -85,6 +85,10 @@ section[hidden]{display:none}
 .game .top{display:flex;align-items:center;gap:10px}
 .game .no{font-family:var(--f-display);font-size:26px;color:var(--jade);line-height:1}
 .game p{margin:0;font-size:14px;color:var(--ink2)}
+.how{background:var(--sunk);border-radius:8px;padding:10px 12px}
+.how h4{margin:0 0 4px;font-size:13px;color:var(--title)}
+.how ul{margin:0;padding-left:18px}
+.how li{font-size:13.5px;font-weight:700;color:var(--ink);margin:2px 0;word-break:keep-all}
 .pts{list-style:none;margin:auto 0 0;padding:8px 0 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:4px}
 .pts li{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--ink2)}
 .pts b{font-family:var(--f-mono);color:var(--gold);white-space:nowrap}
@@ -296,8 +300,10 @@ const WS = {
       { name:"Kahoot 퀴즈", desc:"휴대폰으로 참여하는 실시간 퀴즈.",
         points:[["1등",10],["2등",7],["3등",3]] },
       { name:"랜덤 인물퀴즈", desc:"랜덤으로 나오는 인물을 맞혀요.",
+        rules:["진행MC가 타임스톱으로 1분 30초의 시간을 잽니다.","1분 30초간 많이 맞추는 팀이 유리합니다.","패스는 각 조별로 2번 사용 가능합니다."],
         points:[["1등",10],["2등",7],["3등",3]] },
       { name:"몸으로 말해요", desc:"말 없이 몸짓만으로 제시어를 전달해요.",
+        rules:["진행MC가 타임스톱으로 3분의 시간을 잽니다.","3분간 많이 맞추는 팀이 유리합니다.","패스는 각 조별로 2번 사용 가능합니다."],
         points:[["1등",10],["2등",7],["3등",3]] }
     ]},
     { name:"개인전", sub:"23일 18:00 · 저녁 식사와 함께", games:[
@@ -401,6 +407,7 @@ function renderGames(){
     <div class="ggrid">${p.games.map(g=>`<div class="game">
       <div class="top"><span class="no">${pad(++n)}</span><h3 style="margin:0">${esc(g.name)}</h3></div>
       <p>${esc(g.desc)}</p>
+      ${g.rules?.length?`<div class="how"><h4>진행 방식</h4><ul>${g.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>`:''}
       <ul class="pts">${g.points.length?g.points.map(([k,v])=>v==null?`<li><span><b style="color:var(--gold)">🏆 ${esc(k)}</b></span></li>`:`<li><span>${esc(k)}</span><b>${v}점</b></li>`).join(''):'<li><span>배점 추후 안내</span></li>'}</ul>
     </div>`).join('')}</div></div>`).join('');
   $('rules').innerHTML=WS.parts.map(p=>`<div class="rbox"><h4>${esc(p.name)} · ${esc(p.sub)}</h4>${p.games.map(g=>`<p><b>${esc(g.name)}</b> · ${g.points.length?g.points.map(([k,v])=>v==null?esc(k):`${esc(k)} ${v}점`).join(' / '):'배점 추후 안내'}</p>`).join('')}</div>`).join('');
