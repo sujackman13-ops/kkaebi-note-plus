@@ -108,7 +108,7 @@ section[hidden]{display:none}
 .scard .sc span{font-size:12px;color:var(--ink3)}
 .btns{display:none;gap:8px;margin-top:16px;flex-wrap:wrap}
 .admin .btns{display:flex}
-.btns button{flex:1 1 calc(33.3% - 8px);min-width:52px;border:0;border-radius:10px;padding:11px 0;font-size:15px;font-weight:700;cursor:pointer;background:var(--c);color:#0b0d0f;transition:filter .15s,transform .08s}
+.btns button{flex:1 1 calc(25% - 8px);min-width:52px;border:0;border-radius:10px;padding:11px 0;font-size:15px;font-weight:700;cursor:pointer;background:var(--c);color:#0b0d0f;transition:filter .15s,transform .08s}
 .btns button:hover{filter:brightness(1.1)}
 .btns button:active{transform:scale(.95)}
 .btns button.minus{background:rgba(255,255,255,.1);color:var(--ink)}
@@ -291,22 +291,19 @@ const WS = {
   // 게임 · 배점
   parts: [
     { name:"팀 단체전", sub:"23일 16:00 ~", games:[
-      { name:"서바이벌 체험", desc:"1차전 조별 대결 후, 승자 연합과 패자 연합이 최종전을 펼쳐요.",
-        points:[["1차전 승리 조",5],["최종전 (승자연합 vs 패자연합) 승리 조",15]] },
       { name:"Kahoot 퀴즈", desc:"휴대폰으로 참여하는 실시간 퀴즈.",
         points:[["1등",10],["2등",7],["3등",3]] },
       { name:"랜덤 인물퀴즈", desc:"랜덤으로 나오는 인물을 맞혀요.", points:[] },
       { name:"몸으로 말해요", desc:"말 없이 몸짓만으로 제시어를 전달해요.",
         points:[["1등",10],["2등",7],["3등",3]] },
-      { name:"고깔콘 게임", desc:"고깔콘으로 펼치는 팀 대항전.",
-        points:[["1등",10],["2등",7],["3등",3]] }
+      { name:"인물퀴즈", desc:"인물을 보고 누구인지 맞혀요.", points:[] }
     ]},
     { name:"개인전", sub:"23일 18:00 · 저녁 식사와 함께", games:[
       { name:"핀볼", desc:"저녁 식사와 함께 진행하는 개인전.", points:[] }
     ]}
   ],
   // 점수판 버튼
-  buttons: [-5, 3, 5, 7, 10, 15]
+  buttons: [-5, 3, 7, 10]
 };
 /* ===================================================================== */
 
