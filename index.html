@@ -68,13 +68,13 @@ section[hidden]{display:none}
 .notes{margin:0;padding-left:18px}.notes li{margin:5px 0;font-size:14px;font-weight:700}
 /* teams */
 .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-.team{border:1px solid var(--line);border-radius:var(--r);padding:16px;background:var(--surface);border-top:4px solid var(--c)}
-.team h3{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-size:22px;font-weight:400;color:var(--c);margin-bottom:10px}
-.team .lead{font-weight:700;color:var(--c);font-size:14.5px;margin-bottom:8px}
-.team ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.team li{background:var(--sunk);border-radius:6px;padding:3px 9px;font-size:13.5px}
+.team{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:var(--surface);border-top:4px solid var(--c)}
+.team h3{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-size:26px;font-weight:400;color:var(--c);margin-bottom:12px}
+.team .lead{font-weight:700;color:var(--c);font-size:16.5px;margin-bottom:10px}
+.team ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.team li{background:var(--sunk);border-radius:6px;padding:5px 11px;font-size:15.5px}
 .team li b{font-weight:700}
-.pt{font-family:var(--f-mono);font-size:11px;color:var(--ink3);border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-left:2px}
+.pt{font-family:var(--f-mono);font-size:12.5px;font-weight:700;color:var(--ink3);border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-left:2px}
 /* games */
 .part{margin-bottom:22px}
 .part-h{display:flex;align-items:baseline;gap:10px;margin:0 0 10px}
@@ -194,9 +194,9 @@ linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3
 <!-- ===== 조 편성 ===== -->
 <section id="teams" hidden>
   <div class="card">
-    <p class="eyebrow">6개 조 · 조별 5명</p>
+    <p class="eyebrow" style="font-size:15px;color:var(--ink)">6개 조 · 조별 5명</p>
     <h2>조 편성</h2>
-    <p class="muted" style="margin:0">조별 색은 점수 현황에서도 똑같이 쓰여요. 👑 표시가 조장입니다.</p>
+    <p class="muted" style="margin:0;font-size:16px;font-weight:700;color:var(--ink)">조별 색은 점수 현황에서도 똑같이 쓰여요. 👑 표시가 조장입니다.</p>
   </div>
   <div class="tgrid" id="tgrid"></div>
 </section>
@@ -386,7 +386,7 @@ function tick(){
 function renderTeams(){
   const P=m=>`<li><b>${esc(m[0])}</b> ${esc(m[1])} <span class="pt">${esc(m[2])}</span></li>`;
   $('tgrid').innerHTML=WS.teams.map(t=>`<div class="team" style="--c:${t.color}">
-    <h3>${esc(t.name)} <span class="muted" style="font-family:var(--f-body)">${t.members.length+1}명</span></h3>
+    <h3>${esc(t.name)} <span class="muted" style="font-family:var(--f-body);font-size:15px;color:var(--ink)">${t.members.length+1}명</span></h3>
     <div class="lead">👑 ${esc(t.leader[0])} ${esc(t.leader[1])} <span class="pt">${esc(t.leader[2])}</span> · 조장</div>
     <ul>${t.members.map(P).join('')}</ul></div>`).join('');
 }
