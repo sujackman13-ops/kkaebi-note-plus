@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#121816">
-<title>SOL 워크샵 2026</title>
+<meta name="theme-color" content="#ffffff">
+<title>SOL기술사업부 워크샵 일정</title>
 <meta name="description" content="2026년 10월 23~24일 SOL기술 사업부 대부도 워크샵 — 일정 · 조 편성 · 게임 항목 · 실시간 점수">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;
---bg:#121816;--surface:#1a221f;--sunk:#222c28;--line:#33403b;--ink:#e6ece9;--ink2:#b5c2bc;--ink3:#8d9a94;
---jade:#3fbf9c;--jade-soft:#173a31;--vermil:#ee7a5f;--vermil-soft:#40231c;--gold:#d9a843;--gold-soft:#3a2f17;
---sky:#79a8e6;--sky-soft:#1c2c42;--purple:#b195ef;--purple-soft:#2c2342;--live:#ff5a5a;
+:root{color-scheme:light;
+--bg:#ffffff;--surface:#ffffff;--sunk:#f1f3f2;--line:#dfe3e1;--ink:#111111;--ink2:#333333;--ink3:#666666;
+--jade:#0f7a63;--jade-soft:#dff1ea;--vermil:#c4472b;--vermil-soft:#fbe4dd;--gold:#9a6b12;--gold-soft:#f7ecd4;
+--sky:#2c5f9e;--sky-soft:#e3ecf8;--purple:#6c3fc4;--purple-soft:#eee6fb;--live:#d93030;
 --f-display:"Black Han Sans","IBM Plex Sans KR",system-ui,sans-serif;--f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--r:10px}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
@@ -20,14 +20,15 @@ a{color:inherit}
 button{font:inherit}
 header{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
 .hwrap{max-width:1040px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-family:var(--f-display);font-size:22px;color:var(--jade);text-decoration:none}
+.logo{font-family:var(--f-display);font-size:22px;color:var(--ink);text-decoration:none}
+@media (max-width:560px){.logo small{display:none}}
 .logo small{font-family:var(--f-body);font-size:12px;color:var(--ink3);margin-left:6px}
 nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
 nav button{border:0;background:none;font-size:14px;color:var(--ink2);padding:6px 11px;border-radius:8px;cursor:pointer}
 nav button.on{background:var(--jade-soft);color:var(--jade);font-weight:700}
 nav button:hover:not(.on){color:var(--ink)}
 main{max-width:1040px;margin:0 auto;padding:20px 16px 60px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:16px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
 .eyebrow{font-size:12px;color:var(--ink3);margin:0 0 2px}
 h2{margin:0 0 12px;font-size:20px}
 h3{margin:0 0 6px;font-size:16px}
@@ -42,7 +43,7 @@ section[hidden]{display:none}
 .headrow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
 /* hero */
 .hero{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;background:linear-gradient(135deg,var(--jade-soft),var(--surface) 70%)}
-.clock{font-family:var(--f-display);font-size:40px;color:var(--jade);line-height:1.2;margin:4px 0}
+.clock{font-family:var(--f-display);font-size:40px;color:var(--ink);line-height:1.2;margin:4px 0}
 .hstats{display:grid;grid-template-columns:repeat(3,auto);gap:10px 24px}
 .hstats div{display:flex;flex-direction:column}
 .hstats span{font-size:12px;color:var(--ink3)}
@@ -58,7 +59,7 @@ section[hidden]{display:none}
 .tl li.now{background:linear-gradient(90deg,var(--jade-soft),transparent);border-radius:8px;padding-left:8px}
 .tl li.now .t{color:var(--jade)}
 .tl li.past{opacity:.45}
-.tl li.dayh{display:block;padding:14px 0 6px;border-top:0;font-family:var(--f-display);font-size:18px;color:var(--jade)}
+.tl li.dayh{display:block;padding:14px 0 6px;border-top:0;font-family:var(--f-display);font-size:18px;color:var(--ink)}
 .tl li.dayh:first-child{padding-top:0}
 .tl li.dayh+li{border-top:0}
 @media (max-width:560px){.tl li{grid-template-columns:52px 1fr}.tl .t{white-space:normal}.tl li .tag{grid-column:2;justify-self:start}}
@@ -91,12 +92,12 @@ section[hidden]{display:none}
 .live i{width:7px;height:7px;border-radius:50%;background:var(--live);animation:pulse 1.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,90,90,.5)}70%{box-shadow:0 0 0 7px rgba(255,90,90,0)}100%{box-shadow:0 0 0 0 rgba(255,90,90,0)}}
 .toggle{border:1px solid var(--line);background:var(--sunk);color:var(--ink2);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
-.toggle.on{background:var(--jade);color:#0b0d0f;border-color:var(--jade);font-weight:700}
+.toggle.on{background:var(--jade);color:#fff;border-color:var(--jade);font-weight:700}
 .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media (max-width:980px){.sgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){.sgrid{grid-template-columns:1fr}}
 .scard{border:1px solid var(--line);border-radius:16px;padding:20px 22px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 18%,var(--surface)),var(--surface) 75%);transition:transform .25s,box-shadow .25s;order:var(--o)}
-.scard.r1{box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.35);transform:translateY(-2px)}
+.scard.r1{box-shadow:0 0 0 2px var(--gold),0 10px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
 .scard .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .scard .nm{display:flex;gap:8px;align-items:center}
 .medal{font-size:24px;width:30px;text-align:center;line-height:1}
@@ -108,10 +109,10 @@ section[hidden]{display:none}
 .scard .sc span{font-size:12px;color:var(--ink3)}
 .btns{display:none;gap:8px;margin-top:16px;flex-wrap:wrap}
 .admin .btns{display:flex}
-.btns button{flex:1 1 calc(25% - 8px);min-width:52px;border:0;border-radius:10px;padding:11px 0;font-size:15px;font-weight:700;cursor:pointer;background:var(--c);color:#0b0d0f;transition:filter .15s,transform .08s}
+.btns button{flex:1 1 calc(25% - 8px);min-width:52px;border:0;border-radius:10px;padding:11px 0;font-size:15px;font-weight:700;cursor:pointer;background:var(--c);color:#fff;transition:filter .15s,transform .08s}
 .btns button:hover{filter:brightness(1.1)}
 .btns button:active{transform:scale(.95)}
-.btns button.minus{background:rgba(255,255,255,.1);color:var(--ink)}
+.btns button.minus{background:var(--sunk);color:var(--ink);border:1px solid var(--line)}
 .log{list-style:none;margin:0;padding:0;max-height:320px;overflow:auto}
 .log li{display:flex;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:14px}
 .log li:first-child{border-top:0}
@@ -122,28 +123,27 @@ section[hidden]{display:none}
 .admin .adminbar{display:flex}
 .adminbar button{border:1px solid var(--line);background:var(--sunk);color:var(--ink2);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
 .adminbar button.danger{color:var(--vermil);border-color:var(--vermil-soft)}
-.adminbar button.danger.arm{background:var(--vermil);color:#0b0d0f}
+.adminbar button.danger.arm{background:var(--vermil);color:#fff}
 .rules{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:760px){.rules{grid-template-columns:1fr}}
 .rbox{border:1px dashed var(--line);border-radius:10px;padding:12px 14px}
 .rbox h4{margin:0 0 6px;font-size:12px;color:var(--ink3)}
 .rbox p{margin:0 0 4px;font-size:13px;color:var(--ink2)}
-footer{max-width:1040px;margin:0 auto;padding:0 16px 40px;color:#c4c7ca;font-size:12px}
+footer{max-width:1040px;margin:0 auto;padding:0 16px 40px;color:var(--ink3);font-size:12px}
 /* ===== 배경: 왼쪽 bg-left.png (사옥) / 오른쪽 bg-right.png (ETEVERS) ===== */
-.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#03070a}
+.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#fff}
 .sky i{position:absolute;display:block}
 .sky .bgl,.sky .bgr{top:0;bottom:0;width:50%;background-size:cover;background-repeat:no-repeat}
 .sky .bgl{left:0;background-image:url("bg-left.png");background-position:center 35%}
 .sky .bgr{right:0;background-image:url("bg-right.png");background-position:center center}
 .sky .shade{inset:0;background:
-linear-gradient(90deg,rgba(3,7,10,.2) 0%,rgba(3,7,10,.5) 35%,rgba(3,7,10,.65) 50%,rgba(3,7,10,.5) 65%,rgba(3,7,10,.2) 100%),
-linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3,7,10,.55) 100%)}
+linear-gradient(90deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.82) 35%,rgba(255,255,255,.92) 50%,rgba(255,255,255,.82) 65%,rgba(255,255,255,.55) 100%)}
 </style>
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i class="bgl"></i><i class="bgr"></i><i class="shade"></i></div>
 <header><div class="hwrap">
-  <a class="logo" href="#home">SOL 워크샵<small>2026.10.23 – 24 · 대부도</small></a>
+  <a class="logo" href="#home">SOL기술사업부 워크샵 일정<small>2026.10.23 – 24 · 대부도</small></a>
   <nav id="nav">
     <button data-tab="home">홈</button>
     <button data-tab="teams">조 편성</button>
@@ -281,12 +281,12 @@ const WS = {
   ],
   // 조장 + 조원  [이름, 직급, 소속]
   teams: [
-    { name:"1조", color:"#3fbf9c", leader:["신호근","수석","SSE"], members:[["권민주","책임","SDE"],["현태화","수석","CSE"],["김우진","책임","DSE"],["박정민","연구원","SSE"]] },
-    { name:"2조", color:"#8ea2f5", leader:["백창렬","수석","SDE"], members:[["강성준","선임","SSE"],["이학주","수석","CSE"],["김현경","선임","SSE"],["이윤재","연구원","SDE"]] },
-    { name:"3조", color:"#ee7a5f", leader:["이동준","수석","DSE"], members:[["이호진","선임","SSE"],["김민성","선임","PNE"],["우주혁","연구원","SSE"],["오윤호","수석","DSE"]] },
-    { name:"4조", color:"#d9a843", leader:["이진우","수석","PNE"], members:[["양수진","선임","SSE"],["김준기","연구원","SSE"],["윤태리","선임","SSE"],["홍세종","선임","PNE"]] },
-    { name:"5조", color:"#c49af5", leader:["홍진영","수석","SSE"], members:[["박동석","선임","SSE"],["이희찬","선임","SDE"],["박상준","연구원","CSE"],["김태규","선임","PNE"]] },
-    { name:"6조", color:"#5ec8e0", leader:["박정철","수석","DSE"], members:[["곽진수","책임","CSE"],["이석종","선임","PNE"],["주현백","책임","DSE"],["김상문","수석","SSE"]] }
+    { name:"1조", color:"#0f8a6a", leader:["신호근","수석","SSE"], members:[["권민주","책임","SDE"],["현태화","수석","CSE"],["김우진","책임","DSE"],["박정민","연구원","SSE"]] },
+    { name:"2조", color:"#3b55c9", leader:["백창렬","수석","SDE"], members:[["강성준","선임","SSE"],["이학주","수석","CSE"],["김현경","선임","SSE"],["이윤재","연구원","SDE"]] },
+    { name:"3조", color:"#d0502a", leader:["이동준","수석","DSE"], members:[["이호진","선임","SSE"],["김민성","선임","PNE"],["우주혁","연구원","SSE"],["오윤호","수석","DSE"]] },
+    { name:"4조", color:"#a87800", leader:["이진우","수석","PNE"], members:[["양수진","선임","SSE"],["김준기","연구원","SSE"],["윤태리","선임","SSE"],["홍세종","선임","PNE"]] },
+    { name:"5조", color:"#7d4fd0", leader:["홍진영","수석","SSE"], members:[["박동석","선임","SSE"],["이희찬","선임","SDE"],["박상준","연구원","CSE"],["김태규","선임","PNE"]] },
+    { name:"6조", color:"#0a7fa0", leader:["박정철","수석","DSE"], members:[["곽진수","책임","CSE"],["이석종","선임","PNE"],["주현백","책임","DSE"],["김상문","수석","SSE"]] }
   ],
   // 게임 · 배점
   parts: [
@@ -420,7 +420,7 @@ function renderScores(bump){
   if(bump){const el=document.querySelector(`.sc b[data-team="${CSS.escape(bump)}"]`);if(el){el.style.transform='scale(1.15)';setTimeout(()=>el.style.transform='',160)}}
   $('log').innerHTML=LOG.length?LOG.slice().reverse().map(l=>{
     const t=WS.teams.find(x=>x.name===l.t);
-    return `<li><span class="tm">${new Date(l.at).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}</span><span class="tag" style="background:${t?.color||'#888'};color:#0b0d0f">${esc(l.t)}</span><span class="d ${l.d>0?'p':'m'}">${l.d>0?'+':''}${l.d}</span></li>`}).join('')
+    return `<li><span class="tm">${new Date(l.at).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}</span><span class="tag" style="background:${t?.color||'#888'};color:#fff">${esc(l.t)}</span><span class="d ${l.d>0?'p':'m'}">${l.d>0?'+':''}${l.d}</span></li>`}).join('')
     :'<li class="muted">아직 입력된 점수가 없어요.</li>';
   renderHome();
 }
