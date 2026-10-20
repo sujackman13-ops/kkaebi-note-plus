@@ -103,7 +103,7 @@ section[hidden]{display:none}
 .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media (max-width:980px){.sgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){.sgrid{grid-template-columns:1fr}}
-.scard{border:1px solid var(--line);border-radius:16px;padding:20px 22px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 18%,var(--surface)),var(--surface) 75%);transition:transform .25s,box-shadow .25s;order:var(--o)}
+.scard{border:1px solid var(--line);border-radius:16px;padding:20px 22px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 18%,var(--surface)),var(--surface) 75%);transition:transform .25s,box-shadow .25s}
 .scard.r1{box-shadow:0 0 0 2px var(--gold),0 10px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
 .scard .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .scard .nm{display:flex;gap:8px;align-items:center}
@@ -424,7 +424,7 @@ function renderScores(bump){
   $('sgrid').innerHTML=WS.teams.map(t=>{
     const x=r.find(v=>v.name===t.name);
     return `<div class="scard ${any&&x.rank===1?'r1':''}" style="--c:${t.color};--o:${pos[t.name]}">
-      <div class="row"><div class="nm"><span class="medal">${any?(MEDAL[x.rank]||''):''}</span>
+      <div class="row"><div class="nm"><span class="medal">${x.score>0?(MEDAL[x.rank]||''):''}</span>
         <div><div class="tn">${esc(t.name)}</div><div class="ld">조장 ${esc(t.leader[0])} ${esc(t.leader[1])}</div><div class="mb">${t.members.map(m=>esc(m[0])).join(' · ')}</div></div></div>
         <div class="sc"><b data-team="${esc(t.name)}">${x.score}</b><span>점</span></div></div>
       <div class="btns">${WS.buttons.map(d=>`<button class="${d<0?'minus':''}" data-team="${esc(t.name)}" data-d="${d}">${d>0?'+':''}${d}</button>`).join('')}</div>
