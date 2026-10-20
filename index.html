@@ -295,12 +295,13 @@ const WS = {
     { name:"팀 단체전", sub:"23일 16:00 ~", games:[
       { name:"Kahoot 퀴즈", desc:"휴대폰으로 참여하는 실시간 퀴즈.",
         points:[["1등",10],["2등",7],["3등",3]] },
-      { name:"랜덤 인물퀴즈", desc:"랜덤으로 나오는 인물을 맞혀요.", points:[] },
+      { name:"랜덤 인물퀴즈", desc:"랜덤으로 나오는 인물을 맞혀요.",
+        points:[["1등",10],["2등",7],["3등",3]] },
       { name:"몸으로 말해요", desc:"말 없이 몸짓만으로 제시어를 전달해요.",
         points:[["1등",10],["2등",7],["3등",3]] }
     ]},
     { name:"개인전", sub:"23일 18:00 · 저녁 식사와 함께", games:[
-      { name:"핀볼", desc:"저녁 식사와 함께 진행하는 개인전.", points:[] }
+      { name:"핀볼", desc:"저녁 식사와 함께 진행하는 개인전.", points:[["최종 생존자 우승",null]] }
     ]}
   ],
   // 점수판 버튼
@@ -400,9 +401,9 @@ function renderGames(){
     <div class="ggrid">${p.games.map(g=>`<div class="game">
       <div class="top"><span class="no">${pad(++n)}</span><h3 style="margin:0">${esc(g.name)}</h3></div>
       <p>${esc(g.desc)}</p>
-      <ul class="pts">${g.points.length?g.points.map(([k,v])=>`<li><span>${esc(k)}</span><b>${v}점</b></li>`).join(''):'<li><span>배점 추후 안내</span></li>'}</ul>
+      <ul class="pts">${g.points.length?g.points.map(([k,v])=>v==null?`<li><span><b style="color:var(--gold)">🏆 ${esc(k)}</b></span></li>`:`<li><span>${esc(k)}</span><b>${v}점</b></li>`).join(''):'<li><span>배점 추후 안내</span></li>'}</ul>
     </div>`).join('')}</div></div>`).join('');
-  $('rules').innerHTML=WS.parts.map(p=>`<div class="rbox"><h4>${esc(p.name)} · ${esc(p.sub)}</h4>${p.games.map(g=>`<p><b>${esc(g.name)}</b> · ${g.points.length?g.points.map(([k,v])=>`${esc(k)} ${v}점`).join(' / '):'배점 추후 안내'}</p>`).join('')}</div>`).join('');
+  $('rules').innerHTML=WS.parts.map(p=>`<div class="rbox"><h4>${esc(p.name)} · ${esc(p.sub)}</h4>${p.games.map(g=>`<p><b>${esc(g.name)}</b> · ${g.points.length?g.points.map(([k,v])=>v==null?esc(k):`${esc(k)} ${v}점`).join(' / '):'배점 추후 안내'}</p>`).join('')}</div>`).join('');
 }
 
 /* ---- 점수판 ---- */
