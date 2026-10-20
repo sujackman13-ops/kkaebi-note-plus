@@ -348,7 +348,7 @@ addEventListener('hashchange',()=>{show(location.hash.slice(1));scrollTo(0,0)});
 /* ---- 홈 ---- */
 function renderHome(){
   $('h-title').textContent=WS.title;
-  $('s-teams').textContent=WS.teams.length+'개 조';
+  $('s-teams').textContent=WS.teams.length+'조';
   $('s-games').textContent=allGames.length+'개';
   const r=ranked();
   $('s-lead').textContent=r[0].score>0?r.filter(t=>t.rank===1).map(t=>t.name).join('·'):'-';
