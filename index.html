@@ -332,7 +332,7 @@ const WS = {
         points:[["1등",10],["2등",7],["3등",3]] }
     ]},
     { name:"개인전", sub:"23일 18:00 · 저녁 식사와 함께", games:[
-      { name:"핀볼", desc:"저녁 식사와 함께 진행하는 개인전.", points:[["최종 생존자 우승",null]] }
+      { name:"핀볼", desc:"저녁 식사와 함께 진행하는 개인전.", link:["https://lazygyu.github.io/roulette/","🎮 핀볼 게임 바로 하기"], points:[["최종 생존자 우승",null]] }
     ]}
   ],
   // 점수판 버튼
@@ -433,7 +433,7 @@ function renderGames(){
     <div class="ggrid">${p.games.map(g=>`<div class="game">
       <div class="top"><span class="no">${pad(++n)}</span><h3 style="margin:0">${esc(g.name)}</h3></div>
       <p>${esc(g.desc)}</p>
-      ${g.link?`<a class="more" href="${esc(g.link[0])}">${esc(g.link[1])} →</a>`:''}
+      ${g.link?`<a class="more" href="${esc(g.link[0])}"${/^https?:/.test(g.link[0])?' target="_blank" rel="noopener"':''}>${esc(g.link[1])} →</a>`:''}
       ${g.rules?.length?`<div class="how"><h4>진행 방식</h4><ul>${g.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>`:''}
       <ul class="pts">${g.points.length?g.points.map(([k,v])=>v==null?`<li><span><b style="color:var(--gold)">🏆 ${esc(k)}</b></span></li>`:`<li><span>${esc(k)}</span><b>${v}점</b></li>`).join(''):'<li><span>배점 추후 안내</span></li>'}</ul>
     </div>`).join('')}</div></div>`).join('');
