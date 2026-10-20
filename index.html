@@ -85,6 +85,8 @@ section[hidden]{display:none}
 .game .top{display:flex;align-items:center;gap:10px}
 .game .no{font-family:var(--f-display);font-size:26px;color:var(--jade);line-height:1}
 .game p{margin:0;font-size:14px;color:var(--ink2)}
+.more{display:inline-block;align-self:flex-start;background:#173a31;color:#3fbf9c;text-decoration:none;font-weight:700;font-size:14px;border-radius:8px;padding:7px 12px}
+.more:hover{background:#0f7a63;color:#fff}
 .how{background:var(--sunk);border-radius:8px;padding:10px 12px}
 .how h4{margin:0 0 4px;font-size:13px;color:var(--title)}
 .how ul{margin:0;padding-left:18px}
@@ -297,7 +299,7 @@ const WS = {
   // 게임 · 배점
   parts: [
     { name:"팀 단체전", sub:"23일 16:00 ~", games:[
-      { name:"Kahoot 퀴즈", desc:"휴대폰으로 참여하는 실시간 퀴즈.",
+      { name:"Kahoot 퀴즈", desc:"휴대폰으로 참여하는 실시간 퀴즈.", link:["kahoot.html","📖 진행 방법 상세 보기"],
         points:[["1등",10],["2등",7],["3등",3]] },
       { name:"랜덤 인물퀴즈", desc:"랜덤으로 나오는 인물을 맞혀요.",
         rules:["진행MC가 타임스톱으로 1분 30초의 시간을 잽니다.","1분 30초간 많이 맞추는 팀이 유리합니다.","패스는 각 조별로 2번 사용 가능합니다."],
@@ -407,6 +409,7 @@ function renderGames(){
     <div class="ggrid">${p.games.map(g=>`<div class="game">
       <div class="top"><span class="no">${pad(++n)}</span><h3 style="margin:0">${esc(g.name)}</h3></div>
       <p>${esc(g.desc)}</p>
+      ${g.link?`<a class="more" href="${esc(g.link[0])}">${esc(g.link[1])} →</a>`:''}
       ${g.rules?.length?`<div class="how"><h4>진행 방식</h4><ul>${g.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>`:''}
       <ul class="pts">${g.points.length?g.points.map(([k,v])=>v==null?`<li><span><b style="color:var(--gold)">🏆 ${esc(k)}</b></span></li>`:`<li><span>${esc(k)}</span><b>${v}점</b></li>`).join(''):'<li><span>배점 추후 안내</span></li>'}</ul>
     </div>`).join('')}</div></div>`).join('');

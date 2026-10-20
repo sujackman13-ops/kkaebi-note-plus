@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0d0f">
+<title>Kahoot 퀴즈 진행 방법 · SOL기술사업부 워크샵</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--ink:#000;--ink2:#1f1f1f;--ink3:#4a4a4a;--line:#dfe3e1;--sunk:#f1f3f2;--title:#3fbf9c;--jade:#0f7a63;
+--f-display:"Black Han Sans","IBM Plex Sans KR",system-ui,sans-serif;--f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#03070a;color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;font-weight:500}
+header{position:sticky;top:0;z-index:5;background:#0b0d0f;border-bottom:1px solid #22282b}
+.hwrap{max-width:1040px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-family:var(--f-display);font-size:26px;color:#3fbf9c;text-decoration:none}
+.back{margin-left:auto;color:#fff;text-decoration:none;font-size:16px;padding:8px 14px;border-radius:8px;background:#173a31}
+.back:hover{color:#3fbf9c}
+main{max-width:1040px;margin:0 auto;padding:20px 16px 60px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.eyebrow{font-size:13px;font-weight:700;margin:0 0 2px;color:var(--ink3)}
+h1{margin:0 0 8px;font-size:26px;color:var(--title)}
+.steps-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.steps-nav a{border:1px solid var(--line);background:var(--sunk);color:var(--ink);text-decoration:none;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:700}
+.steps-nav a:hover{border-color:var(--jade);color:var(--jade)}
+.step{scroll-margin-top:80px}
+.step-h{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.no{font-family:var(--f-display);font-size:30px;color:var(--title);line-height:1}
+.step-h h2{margin:0;font-size:20px}
+.shot{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line);cursor:zoom-in}
+.cap{margin:12px 0 0;padding:12px 14px;background:var(--sunk);border-radius:8px;font-weight:700;font-size:15.5px;word-break:keep-all}
+.cap span{display:block}
+.foot{color:#e8e8e8;font-size:12.5px;text-align:center}
+.foot a{color:#3fbf9c}
+.zoom{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:16px;z-index:10;cursor:zoom-out}
+.zoom.on{display:flex}
+.zoom img{max-width:100%;max-height:100%;border-radius:6px}
+@media (max-width:560px){.logo{font-size:20px}.back{font-size:14px;padding:6px 10px}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<header><div class="hwrap">
+  <a class="logo" href="index.html#games">SOL기술사업부 워크샵 일정</a>
+  <a class="back" href="index.html#games">← 게임 항목으로</a>
+</div></header>
+<main>
+  <div class="card">
+    <p class="eyebrow">팀 단체전 · 01</p>
+    <h1>Kahoot 퀴즈 진행 방법</h1>
+    <p style="margin:0;font-weight:700">휴대폰으로 참여하는 실시간 퀴즈예요. 아래 4단계를 따라 참여해 주세요.</p>
+    <nav class="steps-nav" id="nav"></nav>
+  </div>
+  <div id="steps"></div>
+  <p class="foot">이미지를 누르면 크게 볼 수 있어요 · <a href="index.html#games">게임 항목으로 돌아가기</a></p>
+</main>
+<div class="zoom" id="zoom"><img alt=""></div>
+<script>
+const STEPS=[
+  {title:"QR 코드 스캔",img:"kahoot-1.jpg",cap:["가운데 상단의 QR 코드를 핸드폰으로 스캔합니다."]},
+  {title:"별명 입력 후 시작",img:"kahoot-2.jpg",cap:["퀴즈에 참가할 별명을 입력한 뒤 '좋아요, 시작합니다!'를 눌러주세요.","예) 4조_이수재"]},
+  {title:"정답 누르기",img:"kahoot-3.jpg",cap:["스크린에 출제되는 문제를 보고 정답을 누릅니다.","빨리 맞힐수록 높은 점수가 반영됩니다."]},
+  {title:"점수 집계",img:"kahoot-4.jpg",cap:["정답을 맞히면 점수가 자동으로 카운트됩니다.","문제풀이가 끝나면 누적 점수로 최종 1·2·3등이 집계됩니다."]}
+];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.getElementById('nav').innerHTML=STEPS.map((s,i)=>`<a href="#step${i+1}">${i+1}. ${esc(s.title)}</a>`).join('');
+document.getElementById('steps').innerHTML=STEPS.map((s,i)=>`<section class="card step" id="step${i+1}">
+  <div class="step-h"><span class="no">${String(i+1).padStart(2,'0')}</span><h2>${esc(s.title)}</h2></div>
+  <img class="shot" src="${s.img}" alt="${esc(s.title)} 화면" loading="lazy">
+  <p class="cap">${s.cap.map(c=>`<span>${esc(c)}</span>`).join('')}</p></section>`).join('');
+const z=document.getElementById('zoom');
+document.addEventListener('click',e=>{
+  if(e.target.classList.contains('shot')){z.querySelector('img').src=e.target.src;z.classList.add('on');}
+  else if(z.contains(e.target)) z.classList.remove('on');
+});
+addEventListener('keydown',e=>{if(e.key==='Escape')z.classList.remove('on')});
+</script>
+</body>
+</html>
