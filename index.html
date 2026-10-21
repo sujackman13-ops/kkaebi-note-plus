@@ -100,6 +100,16 @@ section[hidden]{display:none}
 .bgm-btn{position:fixed;right:16px;bottom:16px;z-index:20;border:0;border-radius:999px;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;background:#0b0d0f;color:#3fbf9c;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 .bgm-btn.on{background:#173a31}
 .bgm-btn:hover{color:#fff}
+/* photo highlight */
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.pframe{position:relative;margin:0;border-radius:14px;padding:4px;overflow:hidden;background:#0b0d0f;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+.pframe::before{content:"";position:absolute;inset:-60%;background:conic-gradient(from 0deg,#3fbf9c,#ffe14d,#ff5a3c,#7d4fd0,#3fbf9c);animation:spin 6s linear infinite}
+.pframe:nth-child(2)::before{animation-direction:reverse}
+.pframe img{position:relative;display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 25%;border-radius:11px;background:#111;opacity:0;transition:opacity .8s ease}
+.pframe img.show{opacity:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:560px){.photos{gap:10px}}
+@media (prefers-reduced-motion:reduce){.pframe::before{animation:none}}
 .how{background:var(--sunk);border-radius:8px;padding:10px 12px}
 .how h4{margin:0 0 4px;font-size:13px;color:var(--title)}
 .how ul{margin:0;padding-left:18px}
@@ -206,6 +216,10 @@ linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3
       <div><span>게임 수</span><b id="s-games">-</b></div>
       <div><span>현재 1위</span><b id="s-lead">-</b></div>
     </div>
+  </div>
+  <div class="photos" aria-label="포토 하이라이트">
+    <figure class="pframe"><img id="ph-l" alt="워크샵 하이라이트 사진"></figure>
+    <figure class="pframe"><img id="ph-r" alt="워크샵 하이라이트 사진"></figure>
   </div>
   <div class="grid2">
     <div class="card">
@@ -517,6 +531,15 @@ $('reset').onclick=()=>{
   clearTimeout(armT);b.classList.remove('arm');b.textContent='↺ 전체 초기화';LOG=[];save();renderScores();
 };
 
+/* ---- 포토 하이라이트: 왼쪽·오른쪽 랜덤, 6초마다 교체 ---- */
+(function(){
+  const PH=['photo-1.jpg','photo-2.jpg','photo-3.jpg','photo-4.jpg','photo-5.jpg'];
+  const L=$('ph-l'),R=$('ph-r');let cur=[-1,-1];
+  const pick=ex=>{let i;do{i=Math.floor(Math.random()*PH.length)}while(ex.includes(i)&&PH.length>2);return i};
+  const set=(img,i)=>{img.classList.remove('show');const n=new Image();n.onload=()=>{img.src=n.src;requestAnimationFrame(()=>img.classList.add('show'))};n.src=PH[i]};
+  const swap=()=>{const l=pick(cur),r=pick([...cur,l]);cur=[l,r];set(L,l);setTimeout(()=>set(R,r),400)};
+  swap();setInterval(swap,6000);
+})();
 /* ---- 배경 음악 (원곡 0:33 ~ 1:03 구간) ---- */
 (function(){
   const au=$('bgm'), btn=$('bgm-btn'); au.volume=0.7;
