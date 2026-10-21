@@ -101,14 +101,17 @@ section[hidden]{display:none}
 .bgm-btn.on{background:#173a31}
 .bgm-btn:hover{color:#fff}
 /* photo highlight */
-.photos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.pframe{position:relative;margin:0;border-radius:14px;padding:4px;overflow:hidden;background:#0b0d0f;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+.pframe{margin:0;border-radius:14px;padding:4px;overflow:hidden;background:#0b0d0f;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+.pframe.side{position:fixed;z-index:1;top:55%;transform:translateY(-50%);width:min(300px,calc((100vw - 1040px)/2 - 48px));display:none}
+.pframe.side.left{left:calc((100vw - 1040px)/4);translate:-50% 0}
+.pframe.side.right{right:calc((100vw - 1040px)/4);translate:50% 0}
+body.home-on .pframe.side{display:block}
+@media (max-width:1340px){body.home-on .pframe.side{display:none}}
 .pframe::before{content:"";position:absolute;inset:-60%;background:conic-gradient(from 0deg,#3fbf9c,#ffe14d,#ff5a3c,#7d4fd0,#3fbf9c);animation:spin 6s linear infinite}
 .pframe:nth-child(2)::before{animation-direction:reverse}
-.pframe img{position:relative;display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 25%;border-radius:11px;background:#111;opacity:0;transition:opacity .8s ease}
+.pframe img{position:relative;display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 30%;border-radius:11px;background:#111;opacity:0;transition:opacity .8s ease}
 .pframe img.show{opacity:1}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media (max-width:560px){.photos{gap:10px}}
 @media (prefers-reduced-motion:reduce){.pframe::before{animation:none}}
 .how{background:var(--sunk);border-radius:8px;padding:10px 12px}
 .how h4{margin:0 0 4px;font-size:13px;color:var(--title)}
@@ -191,6 +194,8 @@ linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i class="bgl"></i><i class="bgr"></i><i class="shade"></i></div>
+<figure class="pframe side left" aria-hidden="true"><img id="ph-l" alt=""></figure>
+<figure class="pframe side right" aria-hidden="true"><img id="ph-r" alt=""></figure>
 <header><div class="hwrap">
   <a class="logo" href="#home">SOL기술사업부 워크샵 일정<small>2026.10.23 – 24 · 대부도</small></a>
   <nav id="nav">
@@ -216,10 +221,6 @@ linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3
       <div><span>게임 수</span><b id="s-games">-</b></div>
       <div><span>현재 1위</span><b id="s-lead">-</b></div>
     </div>
-  </div>
-  <div class="photos" aria-label="포토 하이라이트">
-    <figure class="pframe"><img id="ph-l" alt="워크샵 하이라이트 사진"></figure>
-    <figure class="pframe"><img id="ph-r" alt="워크샵 하이라이트 사진"></figure>
   </div>
   <div class="grid2">
     <div class="card">
@@ -407,6 +408,7 @@ const TABS=['home','teams','games','scores'];
 function show(t){
   if(!TABS.includes(t))t='home';
   TABS.forEach(x=>$(x).hidden=x!==t);
+  document.body.classList.toggle('home-on',t==='home');
   document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
 }
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{location.hash=b.dataset.tab});
