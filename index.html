@@ -97,11 +97,6 @@ section[hidden]{display:none}
 .prize-list li{font-size:14.5px;font-weight:700;word-break:keep-all}
 .prize-list li span{color:var(--ink3)}
 .prize-list li b{color:var(--gold)}
-.bgm-btn{position:fixed;right:16px;bottom:16px;z-index:20;border:0;border-radius:999px;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;background:#0b0d0f;color:#3fbf9c;box-shadow:0 6px 18px rgba(0,0,0,.35)}
-.bgm-btn.on{background:#173a31}
-.bgm-btn.hint{background:#3fbf9c;color:#0b0d0f;animation:bgmpulse 1.4s ease-in-out infinite}
-@keyframes bgmpulse{0%,100%{box-shadow:0 0 0 0 rgba(63,191,156,.6)}50%{box-shadow:0 0 0 12px rgba(63,191,156,0)}}
-.bgm-btn:hover{color:#fff}
 .how{background:var(--sunk);border-radius:8px;padding:10px 12px}
 .how h4{margin:0 0 4px;font-size:13px;color:var(--title)}
 .how ul{margin:0;padding-left:18px}
@@ -302,8 +297,6 @@ linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3
   </div>
 </section>
 </main>
-<audio id="bgm" src="bgm.mp3" preload="auto" playsinline></audio>
-<button id="bgm-btn" class="bgm-btn" type="button" aria-label="배경 음악">🎵 음악 듣기</button>
 <footer>SOL기술 사업부 워크샵 안내 페이지 · 일정과 점수는 진행 상황에 따라 바뀔 수 있습니다.</footer>
 
 <script>
@@ -529,19 +522,6 @@ $('reset').onclick=()=>{
   const set=(k,i)=>{const back=side[k][1-front[k]],fr=side[k][front[k]];const n=new Image();n.onload=()=>{back.src=n.src;back.classList.add('show');fr.classList.remove('show');front[k]=1-front[k]};n.src=PH[i]};
   const swap=()=>{const l=pick(cur),r=pick([...cur,l]);cur=[l,r];set('l',l);setTimeout(()=>set('r',r),500)};
   swap();setInterval(swap,6000);
-})();
-/* ---- 배경 음악 (녹화본 0:10 ~ 0:45 구간) ---- */
-(function(){
-  const au=$('bgm'), btn=$('bgm-btn'); au.volume=0.7;
-  const ui=()=>{const on=!au.paused;if(on)btn.classList.remove('hint');btn.classList.toggle('on',on);btn.textContent=on?'🔊 음악 끄기':'🎵 음악 듣기';};
-  au.addEventListener('play',ui);au.addEventListener('pause',ui);au.addEventListener('ended',()=>{au.currentTime=0;ui();});
-  let started=false;
-  const start=()=>{if(started)return;au.play().then(()=>{started=true;off();btn.classList.remove('hint');}).catch(()=>{btn.classList.add('hint');btn.textContent='🔊 눌러서 음악 재생';});};
-  const off=()=>{['pointerdown','keydown','touchstart'].forEach(e=>removeEventListener(e,start,true));};
-  // 브라우저가 소리 자동재생을 막으면, 화면을 처음 누르는 순간 재생
-  ['pointerdown','keydown','touchstart'].forEach(e=>addEventListener(e,start,true));
-  start();
-  btn.addEventListener('click',e=>{e.stopPropagation();started=true;off();au.paused?au.play():au.pause();});
 })();
 renderTimeline();renderTeams();renderGames();renderScores();tick();
 setInterval(tick,1000);setInterval(renderTimeline,60000);
