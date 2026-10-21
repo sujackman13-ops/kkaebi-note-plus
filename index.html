@@ -100,19 +100,6 @@ section[hidden]{display:none}
 .bgm-btn{position:fixed;right:16px;bottom:16px;z-index:20;border:0;border-radius:999px;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;background:#0b0d0f;color:#3fbf9c;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 .bgm-btn.on{background:#173a31}
 .bgm-btn:hover{color:#fff}
-/* photo highlight */
-.pframe{margin:0;border-radius:14px;padding:4px;overflow:hidden;background:#0b0d0f;box-shadow:0 10px 28px rgba(0,0,0,.45)}
-.pframe.side{position:fixed;z-index:1;top:55%;transform:translateY(-50%);width:min(300px,calc((100vw - 1040px)/2 - 48px));display:none}
-.pframe.side.left{left:calc((100vw - 1040px)/4);translate:-50% 0}
-.pframe.side.right{right:calc((100vw - 1040px)/4);translate:50% 0}
-body.home-on .pframe.side{display:block}
-@media (max-width:1340px){body.home-on .pframe.side{display:none}}
-.pframe::before{content:"";position:absolute;inset:-60%;background:conic-gradient(from 0deg,#3fbf9c,#ffe14d,#ff5a3c,#7d4fd0,#3fbf9c);animation:spin 6s linear infinite}
-.pframe:nth-child(2)::before{animation-direction:reverse}
-.pframe img{position:relative;display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 30%;border-radius:11px;background:#111;opacity:0;transition:opacity .8s ease}
-.pframe img.show{opacity:1}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.pframe::before{animation:none}}
 .how{background:var(--sunk);border-radius:8px;padding:10px 12px}
 .how h4{margin:0 0 4px;font-size:13px;color:var(--title)}
 .how ul{margin:0;padding-left:18px}
@@ -181,21 +168,21 @@ body.home-on .pframe.side{display:block}
 .rbox h4{margin:0 0 6px;font-size:12px;color:var(--ink3)}
 .rbox p{margin:0 0 4px;font-size:13px;color:var(--ink2)}
 footer{max-width:1040px;margin:0 auto;padding:0 16px 40px;color:#e8e8e8;font-size:12px;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-/* ===== 배경: 왼쪽 bg-left.png (사옥) / 오른쪽 bg-right.png (ETEVERS) ===== */
+/* ===== 배경: 왼쪽·오른쪽에 사진 랜덤 표시 (6초마다 교체) ===== */
 .sky{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#03070a}
 .sky i{position:absolute;display:block}
 .sky .bgl,.sky .bgr{top:0;bottom:0;width:50%;background-size:cover;background-repeat:no-repeat}
-.sky .bgl{left:0;background-image:url("bg-left.png");background-position:center 35%}
-.sky .bgr{right:0;background-image:url("bg-right.png");background-position:center center}
+.sky .bgl{left:0}
+.sky .bgr{right:0}
+.sky .bgl img,.sky .bgr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:0;transition:opacity 1.2s ease}
+.sky img.show{opacity:1}
 .sky .shade{inset:0;background:
 linear-gradient(90deg,rgba(3,7,10,.2) 0%,rgba(3,7,10,.5) 35%,rgba(3,7,10,.65) 50%,rgba(3,7,10,.5) 65%,rgba(3,7,10,.2) 100%),
 linear-gradient(180deg,rgba(3,7,10,.3) 0%,transparent 30%,transparent 70%,rgba(3,7,10,.55) 100%)}
 </style>
 </head>
 <body>
-<div class="sky" aria-hidden="true"><i class="bgl"></i><i class="bgr"></i><i class="shade"></i></div>
-<figure class="pframe side left" aria-hidden="true"><img id="ph-l" alt=""></figure>
-<figure class="pframe side right" aria-hidden="true"><img id="ph-r" alt=""></figure>
+<div class="sky" aria-hidden="true"><i class="bgl"><img id="ph-l1" alt=""><img id="ph-l2" alt=""></i><i class="bgr"><img id="ph-r1" alt=""><img id="ph-r2" alt=""></i><i class="shade"></i></div>
 <header><div class="hwrap">
   <a class="logo" href="#home">SOL기술사업부 워크샵 일정<small>2026.10.23 – 24 · 대부도</small></a>
   <nav id="nav">
@@ -408,7 +395,6 @@ const TABS=['home','teams','games','scores'];
 function show(t){
   if(!TABS.includes(t))t='home';
   TABS.forEach(x=>$(x).hidden=x!==t);
-  document.body.classList.toggle('home-on',t==='home');
   document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
 }
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{location.hash=b.dataset.tab});
@@ -533,13 +519,13 @@ $('reset').onclick=()=>{
   clearTimeout(armT);b.classList.remove('arm');b.textContent='↺ 전체 초기화';LOG=[];save();renderScores();
 };
 
-/* ---- 포토 하이라이트: 왼쪽·오른쪽 랜덤, 6초마다 교체 ---- */
+/* ---- 배경 사진: 왼쪽·오른쪽 랜덤, 6초마다 교체 ---- */
 (function(){
   const PH=['photo-1.jpg','photo-2.jpg','photo-3.jpg','photo-4.jpg','photo-5.jpg'];
-  const L=$('ph-l'),R=$('ph-r');let cur=[-1,-1];
+  const side={l:[$('ph-l1'),$('ph-l2')],r:[$('ph-r1'),$('ph-r2')]};const front={l:0,r:0};let cur=[-1,-1];
   const pick=ex=>{let i;do{i=Math.floor(Math.random()*PH.length)}while(ex.includes(i)&&PH.length>2);return i};
-  const set=(img,i)=>{img.classList.remove('show');const n=new Image();n.onload=()=>{img.src=n.src;requestAnimationFrame(()=>img.classList.add('show'))};n.src=PH[i]};
-  const swap=()=>{const l=pick(cur),r=pick([...cur,l]);cur=[l,r];set(L,l);setTimeout(()=>set(R,r),400)};
+  const set=(k,i)=>{const back=side[k][1-front[k]],fr=side[k][front[k]];const n=new Image();n.onload=()=>{back.src=n.src;back.classList.add('show');fr.classList.remove('show');front[k]=1-front[k]};n.src=PH[i]};
+  const swap=()=>{const l=pick(cur),r=pick([...cur,l]);cur=[l,r];set('l',l);setTimeout(()=>set('r',r),500)};
   swap();setInterval(swap,6000);
 })();
 /* ---- 배경 음악 (원곡 0:33 ~ 1:03 구간) ---- */
